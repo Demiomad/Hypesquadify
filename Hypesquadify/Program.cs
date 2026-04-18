@@ -8,15 +8,19 @@ namespace Hypesquadify
 {
     public class Program
     {
-        private const string Version = "1.0";
+        private const string Version = "1.1";
 
         private static void Intro()
         {
-            Console.WriteLine($"Hypesquadify v{Version}");
-            Console.WriteLine("Allows you to get the HypeSquad badges.");
+            var headerStr = $"Hypesquadify v{Version}";
+
+            // this is a very odd method of doing this but fuck it we ball
+            Console.WriteLine(new string('=', headerStr.Length * 2));
+            Console.WriteLine(new string(' ', headerStr.Length / 2) + headerStr);
+            Console.WriteLine(new string('=', headerStr.Length * 2));
+
+            Console.WriteLine("Get any HypeSquad badge!");
             Console.WriteLine();
-            Console.WriteLine("Press any key to continue.");
-            Console.ReadKey(true);
         }
 
         private static void WriteError(string msg)
@@ -28,12 +32,12 @@ namespace Hypesquadify
 
         public static async Task<int> Main(string[] args)
         {
-            Console.Title = "Hypesquadify";
+            Console.Title = $"Hypesquadify {Version}";
 
             Intro();
-            Console.Clear();
 
-            Console.WriteLine("You need to provide your Discord token in order to authenticate with Discord's API properly.");
+            Console.WriteLine("You need to provide your Discord token in order to authenticate with Discord's API.");
+            Console.WriteLine("Otherwise you'll just get a 403 Unauthorized error.");
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Don't worry, I won't share it with anyone.");
@@ -69,7 +73,7 @@ namespace Hypesquadify
 
             if (!Enum.IsDefined(typeof(House), index))
             {
-                WriteError("That's not a house.");
+                WriteError("That's not a valid house.");
                 return 1;
             }
 
@@ -89,21 +93,38 @@ namespace Hypesquadify
             http.DefaultRequestHeaders.Clear();
             http.DefaultRequestHeaders.Add("Authorization", token);
 
+            Console.WriteLine($"Performing POST request to {requestUri}...");
             var res = await http.PostAsync(requestUri, json);
 
             if (res.IsSuccessStatusCode)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Welcome to the house!");
+                Console.WriteLine("Welcome to the squad! :)");
                 Console.ResetColor();
 
                 return 0;
             }
             else
             {
-                var responseContent = await res.Content.ReadAsStringAsync();
+                switch (res.StatusCode)
+                {
+                    case HttpStatusCode.Unauthorized:
+                        WriteError("401 Unauthorized - Probably invalid token");
+                        break;
 
-                WriteError(responseContent);
+                    case HttpStatusCode.TooManyRequests:
+                        WriteError("429 Too Many Requests - Rate limit, please wait a few moments");
+                        break;
+
+                    case HttpStatusCode.Forbidden:
+                        WriteError("403 Forbidden - Discord hates you and didn't wanna fulfill the request");
+                        break;
+
+                    default:
+                        var resContent = await res.Content.ReadAsStringAsync();
+                        WriteError($"{(int)res.StatusCode} {res.ReasonPhrase}\n{resContent}");
+                        break;
+                }
 
                 return 1;
             }

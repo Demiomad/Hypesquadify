@@ -2,8 +2,8 @@
 Allows you to get the HypeSquad badges.
 
 # How to use
-- Download the latest release.
-- Follow the instructions, to get your Discord Token, <a href="#how-do-i-get-my-discord-token">click here</a>.
+- Download the .NET 10 SDK and compile this app (I was impatient on the file upload)
+- Follow the instructions. To get your Discord Token, <a href="#how-do-i-get-my-discord-token">click here</a>.
 - You're pretty much done.
 
 # How do I get my Discord token?
