@@ -2,7 +2,7 @@
 Allows you to get the HypeSquad badges.
 
 # How to use
-- Download the .NET 10 SDK and compile this app (I was impatient on the file upload)
+- Download the [latest release](https://github.com/Demiomad/Hypesquadify/releases/latest) for your operating system (`Hypesquadify.exe` for Windows, `Hypesquadify` for Linux), or compile it yourself if it doesn't work.
 - Follow the instructions. To get your Discord Token, <a href="#how-do-i-get-my-discord-token">click here</a>.
 - You're pretty much done.
 
