@@ -2,9 +2,8 @@
 Allows you to get the HypeSquad badges.
 
 # How to use
-- Download the [latest release](https://github.com/Demiomad/Hypesquadify/releases/latest) for your operating system (`Hypesquadify.exe` for Windows, `Hypesquadify` for Linux), or compile it yourself if it doesn't work.
-- Follow the instructions. To get your Discord Token, <a href="#how-do-i-get-my-discord-token">click here</a>.
-- You're pretty much done.
+- Compile it yourself (you need the .NET 10 SDK)
+- Follow the instructions. To learn how to get your Discord Token, <a href="#how-do-i-get-my-discord-token">click here</a>.
 
 # How do I get my Discord token?
 - Open Discord in your browser and log in.
@@ -18,6 +17,4 @@ Because you can't. Discord discontinued HypeSquad, meaning that the tab thingy i
 What isn't gone though is the **API endpoint** for it. Which is also why this requires your Discord token.
 
 # I don't wanna give my Discord token.
-Don't worry! I don't give it to anyone except Discord, which *already has it*, all this program does is set your HypeSquad "house" to whatever you choose.<br>
-Also I don't even know how the fuck you make invisible codeblocks, and I don't want to know as I don't need that info.<br>
-I am just a silly guy making silly stuff for the sake of it.
+Don't worry! I don't give it to anyone except Discord, which *already has it*, all this program does is set your HypeSquad "house" to whatever you choose.
