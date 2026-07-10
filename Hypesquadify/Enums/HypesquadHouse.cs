@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Hypesquadify.Enums
 {
-    public enum House
+    /// <summary>
+    /// Represents a Hypesquad house.
+    /// </summary>
+    public enum HypesquadHouse
     {
         Bravery = 1,
         Brilliance = 2,
